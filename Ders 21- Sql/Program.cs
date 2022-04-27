@@ -31,8 +31,8 @@ namespace Ders_21__Sql
 
             var products = productManager.GetAllProducts();
 
-
-
+            //1) Dışarıdan decimal minimum ve maximum price alan ve onlara uygun ürünleri bana dönen metot.
+            #region Soru1 
             //Console.WriteLine("Lütfen maximum değeri giriniz.");
 
             //decimal max =Convert.ToDecimal(Console.ReadLine());
@@ -42,28 +42,52 @@ namespace Ders_21__Sql
             //decimal min = Convert.ToDecimal(Console.ReadLine());
 
             //var products1 = productManager.GetPriceBetweenProducts(max,min);
+            #endregion
 
+
+
+
+            
+            
+            
+
+            //2) Stokta olmayan(stok sayısı 0) olan ürünleri bana dönen metot.
+            #region Soru 2
             var products2 = productManager.GetZeroStockProducts();
-
-            Console.WriteLine("Lütfen bir isim giriniz");
-
-            string name = Console.ReadLine();
-
-            var products3 = productManager.GetNameProducts(name);
+            #endregion
 
 
+            //3) Dışarıdan name alan ve aldığı name değerindeki ürünleri arayıp bana dönen metot.
+            #region Soru 3
+            //Console.WriteLine("Lütfen bir isim giriniz");
 
+            //string name = Console.ReadLine();
+
+            //var products3 = productManager.GetNameProducts(name);
+            #endregion
+
+            //4) Ürünlerin ortalama fiyatını bana veren metot.
+            #region Soru 4
+            var product4 = productManager.GetPriceAVG();
+            #endregion
+
+            //5) Dışarıdan CategoryId alan ve o categoryId e ait ürünlerin ortalama fiyatını bana dönen metot.
+            #region Soru 5
+            //Console.WriteLine("Lütfen kategori id'si giriniz");
+
+            //int id = Convert.ToInt32( Console.ReadLine());
+
+            //var product5 = productManager.GetCategoryAVG(id);
+            #endregion
+
+
+
+            #region Suppliers
             SupplierManager supplierManager = new SupplierManager();
 
             var suppliers = supplierManager.GetAllSuppliers();
+            #endregion
 
-
-
-
-
-
-       
-            
 
         }
     }

@@ -142,7 +142,6 @@ namespace Ders_21__Sql.Manager
             }
 
         }
-
         public List<Product> GetNameProducts(string name)
         {
             List<Product> products = new List<Product>();
@@ -185,31 +184,59 @@ namespace Ders_21__Sql.Manager
                 }
             }
           
-            public void GetPriceAVG()
+            
+
+
+        }
+
+        public double GetPriceAVG()
+        {
+
+            double result = 0;
+
+            using (SqlConnection sqlConnection = new SqlConnection(Connection.connectionString))
             {
+                sqlConnection.Open();
 
-                double result = 0;
+                SqlCommand command = new SqlCommand("select AVG(UnitPrice) from Products", sqlConnection);
 
-                using (SqlConnection sqlConnection = new SqlConnection(Connection.connectionString))
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    sqlConnection.Open();
-
-                    SqlCommand command = new SqlCommand("select AVG( from Products", sqlConnection);
-
-                    var reader = command.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        result = Convert.ToInt32(reader[0]);
-                    }
-
-                    sqlConnection.Close();
+                    result = Convert.ToInt32(reader[0]);
                 }
 
-
+                sqlConnection.Close();
             }
 
+            return result;
+        }
 
+        public double GetCategoryAVG(int id)
+        {
+
+            double result = 0;
+
+            using (SqlConnection sqlConnection = new SqlConnection(Connection.connectionString))
+            {
+                sqlConnection.Open();
+
+                SqlCommand command = new SqlCommand("select AVG(UnitPrice) from Products where CategoryID = @id", sqlConnection);
+
+                command.Parameters.AddWithValue("@id",id);
+
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    result = Convert.ToInt32(reader[0]);
+                }
+
+                sqlConnection.Close();
+            }
+
+            return result;
         }
 
     }
