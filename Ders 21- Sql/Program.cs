@@ -1,6 +1,7 @@
 ﻿using Ders_21__Sql.Manager;
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Ders_21__Sql
 {
@@ -88,6 +89,14 @@ namespace Ders_21__Sql
             var suppliers = supplierManager.GetAllSuppliers();
             #endregion
 
+
+            OrderManager orderManager = new OrderManager();
+
+            var orders = orderManager.GetAllOrder();
+
+
+
+            var result = orders.Where(q => q.ShipCounty.ToLower() == "germany").Count();
 
         }
     }
